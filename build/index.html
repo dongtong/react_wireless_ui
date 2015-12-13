@@ -5,15 +5,25 @@
     <title>React Wexin UI</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <link rel="stylesheet" href="weui.css"></link>
+    <link rel="stylesheet" href="example.css"></link>
+    <style>
+      .block {
+        margin: 5px 0;
+      }
+    </style>
   </head>
   <body>
     <div id="container">
-      <div id="dialogExample">
+      <div id="dialogExample" class="block">
         <div id="buttonExample">
         </div>
         <div id='dialogContent'></div>
       </div>
-      <div id="toast"></div>
+      <div id="toast" class="block"></div>
+
+      <div id="switch" class="block"></div>
+
+      <div id="checkbox" class="block"></div>
     </div>
     <script src="http://localhost:8080/webpack-dev-server.js"></script>
     <script type="text/javascript" src="zepto.js"></script>
