@@ -12,6 +12,7 @@ import {LabelGrp} from './components/label/label_grp.jsx';
 import {LabelInput} from './components/input/label_input.jsx';
 import {ActionSheet} from './components/action_sheet/action_sheet.jsx';
 import {Icon} from './components/icon/icon.jsx';
+import {Article} from './components/article/article.jsx';
 
 
 // ReactDOM.render(<Cell url='http://localhost:3000/api/v2/todos/page/1' lazyload={true}/>, 
@@ -103,3 +104,29 @@ document.querySelector('#action_sheet'))
 //------------------------------------------
 //Icon Component
 ReactDOM.render(<div><Icon big={true} type="success" /><Icon type="success" /></div>, document.querySelector('#icons'))
+
+//------------------------------------------
+//Article Component
+var article = {
+	parts: [
+		{
+			title: '第一部分',
+			chapters: [
+				{
+					title: '第一章',
+					sections: [
+						{
+							title: '1.1 节',
+							content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute'
+						},{
+							title: '1.2 节',
+							content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute'
+						}
+					]
+				}
+			]
+		}
+	]
+}
+
+ReactDOM.render(<Article pageTitle={"文章"} parts={article.parts} />, document.querySelector('#article'))
