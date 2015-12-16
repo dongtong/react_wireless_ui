@@ -13,13 +13,8 @@ import {LabelInput} from './components/input/label_input.jsx';
 import {ActionSheet} from './components/action_sheet/action_sheet.jsx';
 import {Icon} from './components/icon/icon.jsx';
 import {Article} from './components/article/article.jsx';
+import {Progress} from './components/progress/progress.jsx';
 
-
-// ReactDOM.render(<Cell url='http://localhost:3000/api/v2/todos/page/1' lazyload={true}/>, 
-// document.getElementById('container'));
-
-//ReactDOM.render(<WButton id="showConfirm" type="weui_btn_primary" txt="确认"/>, document.getElementById('buttonExample'))
-//ReactDOM.render(<WButton id="showAlert" type="weui_btn_warn" txt="提示"/>, document.getElementById('buttonExample'))
 
 ReactDOM.render(<WBGrp buttons={[{
 	id: 'showConfirm',
@@ -130,3 +125,18 @@ var article = {
 }
 
 ReactDOM.render(<Article pageTitle={"文章"} parts={article.parts} />, document.querySelector('#article'))
+
+//------------------------------------------
+//Progress Component
+var percent = 0;
+function generateProgressPercent() {
+	var percentInterval = setInterval(function(){
+		percent = percent + 10;
+		Progress.setPercent(percent);
+	}, 1000);
+	if(percent == 100) {
+		clearInterval(percentInterval);
+	}	
+}
+ReactDOM.render(<Progress percent={percent} />, document.querySelector('#progress'))
+generateProgressPercent();
