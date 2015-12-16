@@ -11,6 +11,7 @@ import {CheckBox} from './components/checkbox/checkbox.jsx';
 import {LabelGrp} from './components/label/label_grp.jsx';
 import {LabelInput} from './components/input/label_input.jsx';
 import {ActionSheet} from './components/action_sheet/action_sheet.jsx';
+import {Icon} from './components/icon/icon.jsx';
 
 
 // ReactDOM.render(<Cell url='http://localhost:3000/api/v2/todos/page/1' lazyload={true}/>, 
@@ -98,3 +99,7 @@ ReactDOM.render(<ActionSheet
 		alert(item);
 	}}/>,
 document.querySelector('#action_sheet'))
+
+//------------------------------------------
+//Icon Component
+ReactDOM.render(<div><Icon big={true} type="success" /><Icon type="success" /></div>, document.querySelector('#icons'))
