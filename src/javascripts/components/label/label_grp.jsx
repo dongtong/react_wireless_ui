@@ -7,7 +7,7 @@ class LabelGrp extends React.Component {
 	generateLabels() {
 		return this.props.labels.map((item, index) => {
 			return (
-				<Label type={item.type}>{item.txt}</Label>
+				<Label key={"label_" + index} type={item.type}>{item.txt}</Label>
 			);
 		});
 	}

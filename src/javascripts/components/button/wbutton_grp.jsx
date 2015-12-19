@@ -10,9 +10,9 @@ class WBGrp extends React.Component {
 		    usedWidth = winWidth - buttonSpaceWidth * (buttonsLen + 1),
 		    buttonWidth = usedWidth / buttonsLen;
 
-		return this.props.buttons.map((item) => {
+		return this.props.buttons.map((item, index) => {
 			return (
-				<button id={item.id} className={"weui_btn " + (item.disabled ? "weui_btn_disabled " : "") + (item.mini ? "weui_btn_mini " : "") + item.type } style={{display: 'inline-block', width: buttonWidth, marginLeft: buttonSpaceWidth + 'px'}}>
+				<button key={"btn_"+index} id={item.id} className={"weui_btn " + (item.disabled ? "weui_btn_disabled " : "") + (item.mini ? "weui_btn_mini " : "") + item.type } style={{display: 'inline-block', width: buttonWidth, marginLeft: buttonSpaceWidth + 'px'}}>
 					{item.txt}
 				</button>
 			)

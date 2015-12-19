@@ -14,6 +14,7 @@ import {ActionSheet} from './components/action_sheet/action_sheet.jsx';
 import {Icon} from './components/icon/icon.jsx';
 import {Article} from './components/article/article.jsx';
 import {Progress} from './components/progress/progress.jsx';
+import Mask from './components/mask/mask.js';
 
 
 ReactDOM.render(<WBGrp buttons={[{
@@ -140,3 +141,22 @@ function generateProgressPercent() {
 }
 ReactDOM.render(<Progress percent={percent} />, document.querySelector('#progress'))
 generateProgressPercent();
+
+//------------------------------------------
+//Mask Component
+ReactDOM.render(<WButton 
+	id="showMask" 
+	type="weui_btn_primary" 
+	txt="显示Mask"
+	click={function(){
+		// after first time render later, no more creating?
+		var	maskDiv = ReactDOM.render(<Mask />, document.querySelector('#maskDiv'));
+		if(document.querySelector('#maskDiv').hasChildNodes) {	
+			maskDiv.show();
+		}
+		setTimeout(function(){
+			maskDiv.hide();
+		}, 5000);
+	}}/>, document.querySelector('#mask'));
+
+

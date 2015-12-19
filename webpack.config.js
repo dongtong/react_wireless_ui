@@ -1,31 +1,41 @@
+var webpack = require('webpack');
 var path = require('path');
-var node_modules = path.resolve(__dirname, 'node_modules');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
-var config =  {
-	entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'src/javascripts/main.js')],
-	output: {
-		path: path.resolve(__dirname, 'build'),
-		filename: 'bundle.js'
-	},
-	module: {
-		loaders: [{
-			test: /\.js[x]?$/,          
-			exclude: /node_modules/, 
-			loader: 'babel-loader',     
-			query:{
-                presets:['es2015','react']
+module.exports = {
+    entry: [
+        'webpack/hot/dev-server',
+        'webpack-dev-server/client?http://localhost:8080',
+        path.resolve(__dirname, 'src/javascripts/main.js')
+    ],
+    output: {
+        path: path.resolve(__dirname, 'build'),
+        filename: 'bundle.js'   
+    },
+    module: {
+        loaders:[
+            {
+                test: /\.js[x]?$/,
+                exclude: /node_modules/,
+                loader: 'babel'
+            }, {
+                test: /\.less$/,
+                loader: 'style!css!autoprefixer!less'
+            }, {
+                test: /\.css/,
+                loader: 'style!css'
+            }, {
+                test: /\.(png|jpg)$/,
+                loader: 'url?limit=25000'
             }
-		}, {
-			test: /\.css$/,
-			loader: 'style!css'         
-		}, {
-			test: /\.(png|jpg)$/,
-			loader: 'url?limit=25000'   
-		}, {
-			test: /\.(woff|svg)/,
-			loader: 'url?limit=100000'
-		}]
-	}
-}
-
-module.exports =  config;
+        ]
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false,
+            mangle: false
+        }),
+        new OpenBrowserPlugin({ url: 'http://localhost:8080' })
+    ]
+};

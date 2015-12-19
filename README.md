@@ -14,6 +14,7 @@
 - [x] Icon
 - [x] Article
 - [x] Progress
+- [x] Mask
 - [ ] Loading
 - [ ] swiper
 - [ ] GoToTop
