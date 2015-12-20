@@ -15,6 +15,7 @@ import {Icon} from './components/icon/icon.jsx';
 import {Article} from './components/article/article.jsx';
 import {Progress} from './components/progress/progress.jsx';
 import Mask from './components/mask/mask.js';
+import Stepper from './components/stepper/stepper.jsx';
 
 
 ReactDOM.render(<WBGrp buttons={[{
@@ -158,5 +159,9 @@ ReactDOM.render(<WButton
 			maskDiv.hide();
 		}, 5000);
 	}}/>, document.querySelector('#mask'));
+
+//------------------------------------------
+//Stepper Component
+ReactDOM.render(<Stepper label="购买数量" maxValue={10} minValue={2}/>, document.querySelector('#stepper'))
 
 
