@@ -15,10 +15,10 @@
 - [x] Article
 - [x] Progress
 - [x] Mask
+- [x] Stepper
 - [ ] Loading
 - [ ] swiper
 - [ ] GoToTop
-- [ ] Stepper
 - [ ] Tab
 - [ ] CheckList
 - [ ] Timeline

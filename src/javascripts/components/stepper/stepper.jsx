@@ -63,16 +63,35 @@ class Stepper extends React.Component {
 			width: '2rem',
 			borderWidth: 1,
 			borderStyle: 'solid',
-			borderColor: '#DEDEDE'
+			borderColor: '#DEDEDE',
+			textAlign: 'center'
 		}
 
 		let inlineEl = {
 			display: 'inline-block',
 			float: 'left',
-			width: '2rem',
-			fontSize: '1.5rem',
 			textAlign: 'center',
-			verticalAlign: 'middle'
+			verticalAlign: 'middle',
+			borderStyle: 'solid',
+			borderWidth: '1px',
+			borderColor: '#DEDEDE',
+			backgroundColor: '#F7F7F7',
+			width: '30px',
+			height: '1.41176471em',
+			lineHeight: '1.41176471em',
+			backgroundRepeat: 'no-repeat',
+			backgroundPosition: 'center',
+			backgroundSize: '.7rem'
+		}
+
+		let plusIcon = {
+			backgroundImage: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeAQMAAAAB/jzhAAAAAG5wVGOkIJ/OAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURQAAAJCQkNk6GGEAAAACdFJOUwD8wphzDwAAABhJREFUCNdjYGBmAAJKif////+BEFQxDwBtaQhHTrkzcQAAAABJRU5ErkJggg==)',
+			borderLeftWidth: 0
+		}
+
+		let minIcon = {
+			backgroundImage: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAACAQMAAAB16v4BAAAAAG5wVGOkIJ/OAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAADUExURZCQkNsnnHQAAAALSURBVAjXY2CAAQAACgAB5/ja+gAAAABJRU5ErkJggg==)',
+			borderRightWidth: 0
 		}
 
 		return (
@@ -81,10 +100,11 @@ class Stepper extends React.Component {
 					<div className="weui_cell_bd weui_cell_primary">
 	          <p>{this.props.label}:</p>
 	        </div>
+	     <a href="javascript:;" style={plusIcon} />	
 	        <div className="weui_cell_ft">
-	        	<a className="weui_btn weui_btn_mini weui_btn_default inline-el" href="javascript:;" style={inlineEl} onClick={this._increase}>+</a>
+	        	<a href="javascript:;" style={Object.assign({}, inlineEl, minIcon)} onClick={this._decrease}></a>
 							<input type="text" value={this.state.value} style={stepper_input} />
-						<a className="weui_btn weui_btn_mini weui_btn_default" href="javascript:;" style={inlineEl} onClick={this._decrease}>-</a>
+						<a href="javascript:;" style={Object.assign({}, inlineEl, plusIcon)} onClick={this._increase}></a>
 	        </div>
 					
 				</div>
