@@ -16,11 +16,11 @@
 - [x] Progress
 - [x] Mask
 - [x] Stepper
+- [x] RadioList
 - [ ] Loading
 - [ ] swiper
 - [ ] GoToTop
 - [ ] Tab
-- [ ] CheckList
 - [ ] Timeline
 - [ ] Stick
 - [ ] Menu

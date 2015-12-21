@@ -101,13 +101,12 @@ class Stepper extends React.Component {
 					<div className="weui_cell_bd weui_cell_primary">
 	          <p>{this.props.label}:</p>
 	        </div>
-	     <a href="javascript:;" style={plusIcon} />	
+	     	
 	        <div className="weui_cell_ft">
 	        	<a href="javascript:;" style={Object.assign({}, inlineEl, minIcon)} onClick={this._decrease}></a>
 							<input type="text" value={this.state.value} style={stepper_input} />
 						<a href="javascript:;" style={Object.assign({}, inlineEl, plusIcon)} onClick={this._increase}></a>
 	        </div>
-					
 				</div>
 			</div>
 		);

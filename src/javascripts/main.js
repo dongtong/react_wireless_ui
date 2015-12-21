@@ -16,6 +16,7 @@ import {Article} from './components/article/article.jsx';
 import {Progress} from './components/progress/progress.jsx';
 import Mask from './components/mask/mask.js';
 import Stepper from './components/stepper/stepper.jsx';
+import RadioList from './components/radio_list/radio_list.jsx';
 
 
 ReactDOM.render(<WBGrp buttons={[{
@@ -163,5 +164,15 @@ ReactDOM.render(<WButton
 //------------------------------------------
 //Stepper Component
 ReactDOM.render(<Stepper label="购买数量" maxValue={10} minValue={2}/>, document.querySelector('#stepper'))
+
+//------------------------------------------
+//RadioList Component
+ReactDOM.render(<RadioList items={[
+	{label: 'React', value: 'React', name: 'fw'},
+	{label: 'Angular', value: 'Angular', name: 'fw'},
+	{label: 'Ember', value: 'Ember', name: 'fw'},
+	{label: 'Backbone', value: 'Backbone', name: 'fw'},
+	{label: 'Meteor', value: 'Meteor', name: 'fw'}
+]}/>, document.querySelector('#radios'))
 
 
