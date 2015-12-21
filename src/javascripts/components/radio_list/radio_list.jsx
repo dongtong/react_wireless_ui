@@ -30,7 +30,7 @@ class RadioItem extends React.Component {
 
 	render() {
 			let labelStyle = {
-				float: 'left',
+				'float': 'left',
 				maxWidth: '3.6rem',
 				height: '1.2rem',
 				margin: '.2rem .2rem',
@@ -39,9 +39,7 @@ class RadioItem extends React.Component {
 			}
 
 			let radioStyle = {
-				float: 'left',
-				Appearance: 'none',
-				WebkitAppearance: 'none',
+				'float': 'left',
 				backgroundSize: '.48rem'
 			}
 
@@ -58,9 +56,34 @@ class RadioItem extends React.Component {
 				color: '#FFFFFF'
 			}
 
+		//polyfill Object.assign in Safari
+		if (typeof Object.assign != 'function') {
+		  (function () {
+		    Object.assign = function (target) {
+		      'use strict';
+		      if (target === undefined || target === null) {
+		        throw new TypeError('Cannot convert undefined or null to object');
+		      }
+
+		      var output = Object(target);
+		      for (var index = 1; index < arguments.length; index++) {
+		        var source = arguments[index];
+		        if (source !== undefined && source !== null) {
+		          for (var nextKey in source) {
+		            if (source.hasOwnProperty(nextKey)) {
+		              output[nextKey] = source[nextKey];
+		            }
+		          }
+		        }
+		      }
+		      return output;
+		    };
+		  })();
+		}
+
 		return (
 			<label style={labelStyle} onChange={this._checkHandler} >
-				<input name={this.props.name} type='radio' style={radioStyle} value={this.props.value} checked={this.state.checked} />
+				<input className="radio_list" name={this.props.name} type='radio' style={radioStyle} value={this.props.value} checked={this.state.checked} />
 				<span style={Object.assign({}, radioTxt, this.state.checked && checkStyle)}>
 				{this.props.label}
 				</span>
