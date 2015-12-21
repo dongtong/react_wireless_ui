@@ -17,7 +17,8 @@ class Stepper extends React.Component {
  		return {
 	    value: React.PropTypes.number,
 	    maxValue: React.PropTypes.number,
-	    minValue: React.PropTypes.number
+	    minValue: React.PropTypes.number,
+	    label: React.PropTypes.string.isRequired
 	  }
  	}
 
