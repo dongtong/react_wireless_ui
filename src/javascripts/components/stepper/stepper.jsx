@@ -7,6 +7,7 @@ class Stepper extends React.Component {
 		super(props);
 		this._bind('_increase');
 		this._bind('_decrease');
+		this._bind('_onChangeHandler');
 		this._perStep = this.props.perStep || 1;
 		this.state = {
 			value: this.props.minValue || 0
@@ -51,6 +52,10 @@ class Stepper extends React.Component {
 		}
 	}
 
+	_onChangeHandler() {
+		console.log(this.props.value)
+	}
+
 	render() {
 		let stepper_input = {
 			display: 'inline-block',
@@ -65,7 +70,10 @@ class Stepper extends React.Component {
 			borderWidth: 1,
 			borderStyle: 'solid',
 			borderColor: '#DEDEDE',
-			textAlign: 'center'
+			textAlign: 'center',
+			borderRadius: 0,
+			borderLeftWidth: 0,
+			borderRightWidth: 0
 		}
 
 		let inlineEl = {
@@ -76,12 +84,9 @@ class Stepper extends React.Component {
 			borderStyle: 'solid',
 			borderWidth: '1px',
 			borderColor: '#DEDEDE',
-			backgroundColor: '#F7F7F7',
 			width: '30px',
 			height: '1.41176471em',
 			lineHeight: '1.41176471em',
-			backgroundRepeat: 'no-repeat',
-			backgroundPosition: 'center',
 			backgroundSize: '.7rem'
 		}
 
@@ -103,9 +108,9 @@ class Stepper extends React.Component {
 	        </div>
 	     	
 	        <div className="weui_cell_ft">
-	        	<a href="javascript:;" style={Object.assign({}, inlineEl, minIcon)} onClick={this._decrease}></a>
-							<input type="text" value={this.state.value} style={stepper_input} />
-						<a href="javascript:;" style={Object.assign({}, inlineEl, plusIcon)} onClick={this._increase}></a>
+	        	<a href="javascript:;" className="min_icon" style={inlineEl} onClick={this._decrease}></a>
+							<input type="text" value={this.state.value} style={stepper_input} onChange={this._onChangeHandler}/>
+						<a href="javascript:;" className="plus_icon" style={inlineEl} onClick={this._increase}></a>
 	        </div>
 				</div>
 			</div>
