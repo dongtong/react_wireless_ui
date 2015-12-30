@@ -6,6 +6,22 @@ class GotoTop extends React.Component {
   
   constructor(props) {
     super(props);
+    this.scrollElement  = document.documentElement;
+    this.clientElement = document.documentElement;
+    this.compatMode = document.compatMode;
+    this.isChrome = window.navigator.userAgent.toLowerCase().indexOf('chrome') == -1;
+    //不同模式和chrome处理
+    if(this.compatMode === 'BackCompat' && isChrome) {
+      if(document.documentElement.scrollTop == 0) {
+        this.scrollElement = document.body;
+      } 
+    }else{
+      this.scrollElement = document.body;
+    }
+    
+    if(this.compatMode === 'BackCompat') {
+      this.clientElement = document.body;
+    }
     
     this._bind('_scrollTop');
   }
@@ -16,15 +32,42 @@ class GotoTop extends React.Component {
 		});
 	}
   
+  get scrollTop() {
+    return this.scrollElement.scrollTop;
+  }
+  
+  set scrollTop(value) {
+    this.scrollElement.scrollTop = value;
+  }
+  
+  //获取当前网页的展示高度（第一屏高度）
+  _getClientHeight() {
+    return this.clientElement.clientHeight;  
+  }
+  
   //ref to zepto scrollTop function
   _scrollTop(){
-    let hasScrollTop = 'scrollTop' in window;
-    //if (value === undefined) return hasScrollTop ? node.scrollTop : node.pageYOffset
-    hasScrollTop ? () => {window.scrollTop = 0}() : () => { window.scrollTo(window.scrollX, 0) }();
+    let self = this;
+    
+    if(this.props.speed == 'fast') {
+      let hasScrollTop = 'scrollTop' in window;
+      //if (value === undefined) return hasScrollTop ? node.scrollTop : node.pageYOffset
+      hasScrollTop ? () => {window.scrollTop = 0}() : () => { window.scrollTo(window.scrollX, 0) }();
+    }else{
+      function moveScroll(){  
+        self.scrollTop = self.scrollTop / 1.2;  
+        if(self.scrollTop === 0){  
+          clearInterval(moveInterval);  
+          moveInterval = null;
+        }  
+      }  
+      let moveInterval = setInterval(moveScroll, 10); 
+    }     
   }
   
 	render() {
     const style = {
+      display: 'none',
       position: 'fixed',
       bottom: '1rem',
       right: '.5rem',
@@ -39,6 +82,30 @@ class GotoTop extends React.Component {
     
     return <div id='gototop' onClick={this._scrollTop} style={style} ref='gototop'/>
 	}
+  
+  componentDidMount() {
+    
+    window.onscroll = function() {
+      const node = this.refs.gototop;
+      let display = node.style.display;
+
+      //大于半屏高度显示
+      if(this.scrollTop > this._getClientHeight() / 2) {
+        if(display === 'none' || display === '') {
+          node.style.display = 'block';
+        }
+      }else{
+        if(display === 'block' || display === '') {
+          node.style.display = 'none';
+        }  
+      }
+      
+    }.bind(this);
+  }
+  
+  componentWillUnmount() {
+    window.onscroll = null;
+  }
 }
 
 export default GotoTop
