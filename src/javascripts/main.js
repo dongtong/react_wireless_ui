@@ -17,6 +17,7 @@ import {Progress} from './components/progress/progress.jsx';
 import Mask from './components/mask/mask.js';
 import Stepper from './components/stepper/stepper.jsx';
 import RadioList from './components/radio_list/radio_list.jsx';
+import GotoTop from './components/gototop/gototop.jsx';
 
 
 ReactDOM.render(<WBGrp buttons={[{
@@ -173,6 +174,12 @@ ReactDOM.render(<RadioList items={[
 	{label: 'Ember', value: 'Ember', name: 'fw'},
 	{label: 'Backbone', value: 'Backbone', name: 'fw'},
 	{label: 'Meteor', value: 'Meteor', name: 'fw'}
-]}/>, document.querySelector('#radios'))
+]}/>, document.querySelector('#radios'));
+
+
+//------------------------------------------
+//Gototop Component
+
+ReactDOM.render(<GotoTop />, document.querySelector('#goToTop'))
 
 
