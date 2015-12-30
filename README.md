@@ -17,9 +17,9 @@
 - [x] Mask
 - [x] Stepper
 - [x] RadioList
+- [x] GoToTop
 - [ ] Loading
 - [ ] swiper
-- [ ] GoToTop
 - [ ] Tab
 - [ ] Timeline
 - [ ] Stick
