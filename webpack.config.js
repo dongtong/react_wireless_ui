@@ -17,7 +17,7 @@ module.exports = {
             {
                 test: /\.js[x]?$/,
                 exclude: /node_modules/,
-                loader: 'babel'
+                loaders: ["babel?cacheDirectory&presets[]=es2015&presets[]=stage-0&presets[]=react"]
             }, {
                 test: /\.less$/,
                 loader: 'style!css!autoprefixer!less'
@@ -37,5 +37,6 @@ module.exports = {
             mangle: false
         }),
         new OpenBrowserPlugin({ url: 'http://localhost:8080' })
-    ]
+    ],
+    resolve: ['', '.js', '.jsx']
 };

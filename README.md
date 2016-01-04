@@ -27,9 +27,3 @@
 - [ ] Navbar
 - [ ] Datepicker
 
-###Screenshots
-
-![Mobile UI Components](assets/screenshot.png)
-
-![Mobile UI Components](assets/screenshot2.png)
-

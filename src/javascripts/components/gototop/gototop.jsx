@@ -52,7 +52,7 @@ class GotoTop extends React.Component {
     if(this.props.speed == 'fast') {
       let hasScrollTop = 'scrollTop' in window;
       //if (value === undefined) return hasScrollTop ? node.scrollTop : node.pageYOffset
-      hasScrollTop ? () => {window.scrollTop = 0}() : () => { window.scrollTo(window.scrollX, 0) }();
+      hasScrollTop ? (() => {window.scrollTop = 0})() : (() => { window.scrollTo(window.scrollX, 0) })();
     }else{
       function moveScroll(){  
         self.scrollTop = self.scrollTop / 1.2;  

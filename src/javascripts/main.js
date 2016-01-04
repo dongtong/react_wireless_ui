@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 //------------------Components---------------------
-import {Dialog} from './components/dialog/dialog.jsx';
+import Dialog from './components/dialog/dialog.jsx';
 import {LazyLoad} from './components/lazyload/lazyload.jsx';
 import {Cell} from './components/cell/cell.jsx';
 import {WButton} from './components/button/wbutton.jsx';
@@ -19,42 +19,39 @@ import Stepper from './components/stepper/stepper.jsx';
 import RadioList from './components/radio_list/radio_list.jsx';
 import GotoTop from './components/gototop/gototop.jsx';
 
-
-ReactDOM.render(<WBGrp buttons={[{
-	id: 'showConfirm',
-	type: 'weui_btn_primary',
-	txt: '确认'
-}, {
-	id: 'showAlert',
-	type: 'weui_btn_warn',
-	txt: '提示'
-}]} />, document.getElementById('buttonExample'))
-
-$('#showConfirm').click(function(){
-	if($('#dialogContent').find('.weui_dialog_confirm').length) {
-		$('#dialogContent').find('.weui_dialog_confirm').show();
-	}else{
-		ReactDOM.render(<Dialog 
-			title="确认" 
-			type="confirm" 
-			content="确认dialog" 
-			url="http://localhost:3000/v2/todos" />, 
-			document.getElementById('dialogContent').hasChildNodes() ? document.getElementById('dialogContent').appendChild(document.createElement('div')) : document.getElementById('dialogContent'));	
-	}
+//显示Alert
+let alertDialog;              
+$('#showAlert').on('click', function () {
+  if($('#alert').children().length){
+    alertDialog.showAlert();
+  }else{
+    alertDialog = ReactDOM.render(
+      <Dialog type='alert'
+              theme='primary'
+              >这里是提示内容</Dialog>, 
+      document.querySelector('#alert'));
+  }
 });
 
-$('#showAlert').click(function(){
-	if($('#dialogContent').find('.weui_dialog_alert').length) {
-		$('#dialogContent').find('.weui_dialog_alert').show();
-	}else{
-		ReactDOM.render(React.createElement(Dialog, {
-			content: "提示dialog",
-			type: "alert",
-			title: "提示"
-		}), document.getElementById('dialogContent').hasChildNodes() ? document.getElementById('dialogContent').appendChild(document.createElement('div')) : document.getElementById('dialogContent'));	
-	}
+//显示Confirm Dialog
+let confirmDialog; 
+$('#showConfirm').on('click', function () {
+  if($('#confirm').children().length){
+    confirmDialog.showConfirm();
+  }else{
+    confirmDialog = ReactDOM.render(
+      <Dialog type='confirm'
+              confirm={function() {
+                  alert('confirmed');
+                  setTimeout(function(){
+                      confirmDialog.hideConfirm();
+                  }, 3000);
+              }}>这里是确认内容</Dialog>, 
+      document.querySelector('#confirm'));
+  }
 });
 
+//开关
 ReactDOM.render(<Switch callback={{
 	checkedFn: function(){console.log('checked...')},
 	uncheckedFn: function(){console.log('unchecked...')}
