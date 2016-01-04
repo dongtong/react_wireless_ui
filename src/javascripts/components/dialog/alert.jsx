@@ -1,6 +1,7 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import reactMixin from 'react-mixin';
 import BindMixin from '../mixins/bind.js';
@@ -45,6 +46,7 @@ class Alert extends Component {
     _handleClick () {
         if(this.props.callback) {
             this.props.callback.apply(this, arguments);
+            this.hide();
         } else {
             this.hide();
         }
@@ -57,6 +59,14 @@ class Alert extends Component {
     
     hide() {
       this.setState({show: false});
+      let rcDOM = ReactDOM.findDOMNode(this).parentNode
+      let realDOM = rcDOM.parentNode;
+      ReactDOM.unmountComponentAtNode(realDOM);
+      
+      //类方式调用，移除创建额外的DOM
+      if(realDOM.className === 'dialog-alert') {
+          realDOM.parentNode.removeChild(realDOM)
+      }
     }
 
     render() {

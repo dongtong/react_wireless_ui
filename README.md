@@ -37,10 +37,13 @@
 属性 | 类型 | 默认值 | 可选值 | 备注
 -----|------|--------|-------|------|
 show | bool| true |    | 默认显示dialog
-type | string|   | alert, confirm| dialog分为两种类型,必填
+type | string| 无  | alert, confirm| dialog分为两种类型,必填
 title| string| 提示  | | alert弹框标题
-theme| string|   | default, primary |
+theme| string|  无 | default, primary |
 callback| func|   | |  alert类型的回调函数，如果不提供，默认关闭对话框
+cancelLabel| string | 取消 | | confirm类型第一个button的文本
+cancel| func|   | |  alert类型的回调函数，如果不提供，默认关闭
+confirmLabel| string | 确定  | |  confirm类型第二个button的文本
 confirm| func|   | |  confirm类型的回调函数，如果是'confirm'类型，必填
 
 

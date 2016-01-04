@@ -40,4 +40,24 @@ class Dialog extends Component {
   }
 }
 
+//Dialog.alert({ ... })
+Dialog.alert = function (props) {
+  let div = document.createElement('div');
+  document.body.appendChild(div);
+  div.className = 'dialog-alert';
+  
+  return ReactDOM.render(<div className='dialog'><Alert {...this.props}>{props.content}</Alert></div>, div);
+}
+
+//Dialog.confirm({ ... })
+Dialog.confirm = function (props) {
+  let div = document.createElement('div');
+  document.body.appendChild(div);
+  div.className = 'dialog-confirm';
+  
+  return ReactDOM.render(<div className='dialog'><Confirm {...this.props}>{props.content}</Confirm></div>, div);
+}
+
+
+
 export default Dialog;

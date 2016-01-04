@@ -33,6 +33,13 @@ $('#showAlert').on('click', function () {
   }
 });
 
+$('#showAlert2').on('click', function () {
+  Dialog.alert({
+    title: '提示2',
+    content: '另一种调用方式'
+  })
+});
+
 //显示Confirm Dialog
 let confirmDialog; 
 $('#showConfirm').on('click', function () {
@@ -51,7 +58,6 @@ $('#showConfirm').on('click', function () {
   }
 });
 
-//开关
 ReactDOM.render(<Switch callback={{
 	checkedFn: function(){console.log('checked...')},
 	uncheckedFn: function(){console.log('unchecked...')}
