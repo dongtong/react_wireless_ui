@@ -46,7 +46,7 @@ Dialog.alert = function (props) {
   document.body.appendChild(div);
   div.className = 'dialog-alert';
   
-  return ReactDOM.render(<div className='dialog'><Alert {...this.props}>{props.content}</Alert></div>, div);
+  return ReactDOM.render(<div className='dialog'><Alert {...props}>{props.content}</Alert></div>, div);
 }
 
 //Dialog.confirm({ ... })
@@ -54,8 +54,8 @@ Dialog.confirm = function (props) {
   let div = document.createElement('div');
   document.body.appendChild(div);
   div.className = 'dialog-confirm';
-  
-  return ReactDOM.render(<div className='dialog'><Confirm {...this.props}>{props.content}</Confirm></div>, div);
+
+  return ReactDOM.render(<div className='dialog'><Confirm {...props}>{props.content}</Confirm></div>, div);
 }
 
 

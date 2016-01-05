@@ -36,7 +36,7 @@ $('#showAlert').on('click', function () {
 $('#showAlert2').on('click', function () {
   Dialog.alert({
     title: '提示2',
-    content: '另一种调用方式'
+    content: 'alert另一种调用方式'
   })
 });
 
@@ -56,6 +56,20 @@ $('#showConfirm').on('click', function () {
               }}>这里是确认内容</Dialog>, 
       document.querySelector('#confirm'));
   }
+});
+
+$('#showConfirm2').on('click', function () {
+  Dialog.confirm({
+    title: '确认2',
+    content: 'confirm另一种调用方式',
+    confirm: function() {
+       var promise = new Promise(function(resolve, reject) {
+         alert('confirmed 2');
+         resolve('ok');
+       });
+       return promise;
+    }
+  })
 });
 
 ReactDOM.render(<Switch callback={{

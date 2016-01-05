@@ -1,6 +1,7 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import reactMixin from 'react-mixin';
 import BindMixin from '../mixins/bind.js';
@@ -60,9 +61,19 @@ class Confirm extends Component {
         }
     }
     
+    _destroyNode() {
+        let realDOM = ReactDOM.findDOMNode(this).parentNode.parentNode;
+        if(realDOM.className === 'dialog-confirm') {
+            realDOM.parentNode.removeChild(realDOM);
+        }
+    }
+    
     _handleConfirm() {
+        let self = this;
         if (typeof(this.props.confirm) === 'function') {
-          this.props.confirm.apply(null, arguments);
+          this.props.confirm().then(function(res){
+            self._destroyNode();
+          })
         } else {
           this.hide();
         }
@@ -92,6 +103,7 @@ class Confirm extends Component {
 
     hide() {
         this.setState({show: false});
+        this._destroyNode();
     }
     
 }

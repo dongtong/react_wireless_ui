@@ -27,6 +27,12 @@
 - [ ] Navbar
 - [ ] Datepicker
 
+###约定
+
+- 类实例方法前缀_
+
+- DOM事件监听函数_handleClick, _handleXxx之类
+
 #### Dialog
 
 `Dialog`组件分为`Alert`和`Confirm`两种类型。
@@ -45,9 +51,10 @@ cancelLabel| string | 取消 | | confirm类型第一个button的文本
 cancel| func|   | |  alert类型的回调函数，如果不提供，默认关闭
 confirmLabel| string | 确定  | |  confirm类型第二个button的文本
 confirm| func|   | |  confirm类型的回调函数，如果是'confirm'类型，必填
+content| object|无  | |  Dialog函数式调用时，Dialog中的显示内容
 
 
-##### 示例
+##### 示例1
 
     import React from 'react';
     import ReactDOM from 'react-dom';
@@ -83,5 +90,26 @@ confirm| func|   | |  confirm类型的回调函数，如果是'confirm'类型，
                   }}>这里是确认内容</Dialog>, 
           document.querySelector('#confirm'));
       }
+    });
+    
+##### 示例2
+
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import Dialog from './components/dialog/dialog.jsx';
+
+    //显示Alert
+    $('#showConfirm2').on('click', function () {
+      Dialog.confirm({
+        title: '确认2',
+        content: 'confirm另一种调用方式',
+        confirm: function() {
+          var promise = new Promise(function(resolve, reject) {
+            alert('confirmed 2');
+            resolve('ok');
+          });
+          return promise;
+        }
+      })
     });
 
